@@ -2,17 +2,18 @@ import days.*
 import java.io.File
 
 fun main() {
-    listOf(1, 2, 3, 4, 5, 6, 7, 8)
-        .map { getResult(it) }
+    (1..8)
+        .map { getDay(it) }
+        .map { println(it.prettyPrint())}
 }
 
-fun getResult(date: Int) {
-    val day = getDay(date)
-    println("--- ${day::class.simpleName} ---")
-    println("Part One: ${day.partOne()}")
-    println("Part Two: ${day.partTwo()}")
-    println()
-}
+fun Day.prettyPrint() =
+    """
+       --- ${this::class.simpleName} ---
+        * Part One: ${partOne()}
+        * Part Two: ${partTwo()}       
+        
+    """.trimMargin()
 
 fun getDay(date: Int): Day {
     val input = File({}::class.java.getResource("inputs/Day$date").file)
