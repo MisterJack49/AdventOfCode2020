@@ -2,7 +2,7 @@ import days.*
 import java.io.File
 
 fun main() {
-    listOf(1, 2, 3, 4)
+    listOf(1, 2, 3, 4, 5)
         .map { getResult(it) }
 }
 
