@@ -19,8 +19,7 @@ class Day4(override val input: File) : Day {
 
     private fun advancedValidation(passport: Map<String, String>): Boolean {
         if (!simpleValidation(passport)) return false
-        return passport.map { checkField(it.key, it.value) }
-            .all { it }
+        return passport.all { checkField(it.key, it.value) }
     }
 
     private fun checkField(key: String, value: String): Boolean {
