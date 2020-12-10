@@ -16,8 +16,8 @@ class Day6(override val input: File) : Day {
             .responsesByGroup()
             .map { group ->
                 group.flattenResponses()
-                    .groupBy { response -> response }
-                    .map { (_, responsesPerType) -> responsesPerType.count() }
+                    .groupBy { responseType -> responseType }
+                    .map { (_, responsesOfType) -> responsesOfType.count() }
                     .filter { count -> count == group.count() }
                     .count()
             }
