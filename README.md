@@ -1,1 +1,2 @@
-# AdventOfCode2020
+# Advent Of Code 2020
+My contribution to the event
