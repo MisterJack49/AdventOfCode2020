@@ -7,16 +7,16 @@ class Day7(override val input: File) : Day {
         val policies = input.readLines()
             .getBagsPolicies()
 
-        val holders = policies.filter { it.canHold("shiny gold") }.map { it.key }.toMutableList()
+        val holders = policies.filter { it.canHold("shiny gold") }.toMutableList()
 
-        var tmp = holders.toList()
+        var tmp = holders
         while (tmp.isEmpty().not()) {
             tmp = tmp.map { bag ->
                 policies
-                    .filter { it.canHold(bag) }
-                    .map { it.key }
+                    .filter { it.canHold(bag.type) }
             }.flatten()
                 .distinct()
+                .toMutableList()
 
             holders.addAll(tmp)
         }
@@ -30,37 +30,27 @@ class Day7(override val input: File) : Day {
 
         val shinyBag = policies.getBag("shiny gold")
 
-        return getBagCount(policies, shinyBag)
+        return policies.getAllNecessaryBagsFor(shinyBag)
     }
 
-    private fun getBagCount(
-        policies: Map<String, List<Pair<Int, String>>>,
-        bag: Map.Entry<String, List<Pair<Int, String>>>
+    private fun List<Bag>.getAllNecessaryBagsFor(
+        bag: Bag
     ): Int {
-        if (bag.holds().isEmpty()) return 0
+        if (bag.inventory.isEmpty()) return 0
         return bag
-            .holds()
-            .map { it.quantity() + it.quantity() * getBagCount(policies, policies.getBag(it.bagType())) }
+            .inventory
+            .map { it.quantity + it.quantity * getAllNecessaryBagsFor(getBag(it.type)) }
             .sum()
     }
 
-    private fun Map.Entry<String, List<Pair<Int, String>>>.canHold(bag: String) =
-        this.holds().any { it.second == bag }
+    private fun List<Bag>.getBag(type: String) =
+        first { it.type == type }
 
-    private fun Map.Entry<String, List<Pair<Int, String>>>.holds() =
-        this.value
-
-    private fun Map<String, List<Pair<Int, String>>>.getBag(type: String) =
-        this.entries.first { it.key == type }
-
-    private fun Pair<Int, String>.quantity() = this.first
-    private fun Pair<Int, String>.bagType() = this.second
-
-    private fun List<String>.getBagsPolicies(): Map<String, List<Pair<Int, String>>> {
+    private fun List<String>.getBagsPolicies(): List<Bag> {
         return this.map { policy ->
             policy.split(" contain")
                 .let {
-                    Pair(
+                    Bag(
                         it[0].replace(" bags", ""),
                         it[1].replace(" bag", "")
                             .replace(" no others", "")
@@ -70,10 +60,17 @@ class Day7(override val input: File) : Day {
                             .map { bags ->
                                 val regex = Regex("^ ([0-9]) (.*)$")
                                 regex.matchEntire(bags)!!.destructured
-                                    .let { (number, type) -> number.toInt() to type.removeSuffix("s") }
+                                    .let { (number, type) -> Capacity(number.toInt(), type.removeSuffix("s")) }
                             }
                     )
                 }
-        }.toMap()
+        }
     }
 }
+
+data class Bag(val type: String, val inventory: List<Capacity>) {
+    fun canHold(bag: String) =
+        inventory.any { it.type == bag }
+}
+
+data class Capacity(val quantity: Int, val type: String)
