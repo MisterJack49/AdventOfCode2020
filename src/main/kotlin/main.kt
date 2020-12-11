@@ -2,7 +2,7 @@ import days.*
 import java.io.File
 
 fun main() {
-    (1..10)
+    (1..11)
         .map { getDay(it) }
         .map { println(it.prettyPrint()) }
 }
@@ -29,6 +29,7 @@ fun getDay(date: Int): Day {
         8 -> Day8(input)
         9 -> Day9(input)
         10 -> Day10(input)
+        11 -> Day11(input)
         else -> throw NotImplementedError()
     }
 }
