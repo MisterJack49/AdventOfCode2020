@@ -1,5 +1,8 @@
 package days
 
+import days.day11.Boundaries
+import days.day11.Directions
+import days.day11.Point
 import java.io.File
 
 class Day11(override val input: File) : Day {
@@ -103,25 +106,4 @@ class Day11(override val input: File) : Day {
     private fun List<CharArray>.set(value: Char, point: Point) {
         this[point.y][point.x] = value
     }
-}
-
-data class Boundaries(val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
-
-data class Point(val x: Int, val y: Int) {
-    infix operator fun plus(other: Point) =
-        copy(x = x + other.x, y = y + other.y)
-
-    infix fun `in`(boundaries: Boundaries) =
-        (boundaries.minX..boundaries.maxX).contains(x) && (boundaries.minY..boundaries.maxY).contains(y)
-}
-
-enum class Directions(val vector: Point) {
-    N(Point(0, -1)),
-    NE(Point(1, -1)),
-    E(Point(1, 0)),
-    SE(Point(1, 1)),
-    S(Point(0, 1)),
-    SW(Point(-1, 1)),
-    W(Point(-1, 0)),
-    NW(Point(-1, -1))
 }

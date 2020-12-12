@@ -1,5 +1,6 @@
-package days
+package days.day2
 
+import days.Day
 import java.io.File
 
 class Day2(override val input: File) : Day {

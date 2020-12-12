@@ -1,5 +1,6 @@
-package days
+package days.day10
 
+import days.Day
 import java.io.File
 
 class Day10(override val input: File) : Day {
@@ -31,8 +32,8 @@ class Day10(override val input: File) : Day {
             when (adapters[i + 1] - adapters[i]) {
                 1 -> group.add(adapters[i])
                 3 -> {
-                    group.add(adapters[i]);
-                    groups.add(group.toList());
+                    group.add(adapters[i])
+                    groups.add(group.toList())
                     group.clear()
                 }
             }

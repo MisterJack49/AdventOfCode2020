@@ -1,4 +1,4 @@
-import days.Day9
+import days.day9.Day9
 import org.amshove.kluent.`should be equal to`
 import org.junit.Test
 import java.io.File

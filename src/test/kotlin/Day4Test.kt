@@ -1,4 +1,4 @@
-import days.Day4
+import days.day4.Day4
 import org.amshove.kluent.`should be equal to`
 import java.io.File
 import kotlin.test.Test

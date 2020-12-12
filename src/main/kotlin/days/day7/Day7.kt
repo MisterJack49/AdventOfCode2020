@@ -1,5 +1,7 @@
 package days
 
+import days.day7.Bag
+import days.day7.Capacity
 import java.io.File
 
 class Day7(override val input: File) : Day {
@@ -67,10 +69,3 @@ class Day7(override val input: File) : Day {
         }
     }
 }
-
-data class Bag(val type: String, val inventory: List<Capacity>) {
-    fun canHold(bag: String) =
-        inventory.any { it.type == bag }
-}
-
-data class Capacity(val quantity: Int, val type: String)

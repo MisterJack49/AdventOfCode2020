@@ -1,5 +1,7 @@
 package days
 
+import days.day8.Instruction
+import days.day8.StateMachine
 import java.io.File
 
 class Day8(override val input: File) : Day {
@@ -59,33 +61,6 @@ class Day8(override val input: File) : Day {
     private val Pair<Int, Int>.result
         get() = second
 
-}
-
-data class Instruction(val command: String, val argument: Int, var ran: Boolean = false)
-
-data class StateMachine(val instructions: List<Instruction>, var accumulator: Int = 0) {
-    fun run(index: Int = 0): Pair<Int, Int> {
-        if (index == instructions.count()) return Pair(0, accumulator)
-
-        val instruction = instructions[index]
-        if (instruction.ran) return Pair(-1, accumulator)
-
-        return when (instruction.command) {
-            "jmp" -> {
-                instruction.ran = true
-                run(index + instruction.argument)
-            }
-            "acc" -> {
-                accumulator += instruction.argument
-                instruction.ran = true
-                run(index + 1)
-            }
-            else -> {
-                instruction.ran = true
-                run(index + 1)
-            }
-        }
-    }
 }
 
 

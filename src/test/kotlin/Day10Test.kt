@@ -1,5 +1,5 @@
 
-import days.Day10
+import days.day10.Day10
 import org.amshove.kluent.`should be equal to`
 import org.junit.Test
 import java.io.File

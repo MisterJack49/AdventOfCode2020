@@ -1,4 +1,12 @@
 import days.*
+import days.day1.Day1
+import days.day10.Day10
+import days.day2.Day2
+import days.day3.Day3
+import days.day4.Day4
+import days.day5.Day5
+import days.day6.Day6
+import days.day9.Day9
 import java.io.File
 
 fun main() {

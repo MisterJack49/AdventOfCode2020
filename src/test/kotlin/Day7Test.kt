@@ -1,5 +1,3 @@
-import days.Day4
-import days.Day6
 import days.Day7
 import org.amshove.kluent.`should be equal to`
 import org.junit.Test
