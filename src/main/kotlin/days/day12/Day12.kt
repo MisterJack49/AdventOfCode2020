@@ -7,16 +7,6 @@ import days.day12.Waypoint
 import java.io.File
 
 class Day12(override val input: File) : Day {
-
-    /**
-    Action N means to move north by the given value.
-    Action S means to move south by the given value.
-    Action E means to move east by the given value.
-    Action W means to move west by the given value.
-    Action L means to turn left the given number of degrees.
-    Action R means to turn right the given number of degrees.
-    Action F means to move forward by the given value in the direction the ship is currently facing.
-     */
     override fun partOne(): Any {
         var boat =
             Waypoint(
