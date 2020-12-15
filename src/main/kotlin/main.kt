@@ -3,6 +3,7 @@ import days.day1.Day1
 import days.day10.Day10
 import days.day13.Day13
 import days.day14.Day14
+import days.day15.Day15
 import days.day2.Day2
 import days.day3.Day3
 import days.day4.Day4
@@ -12,7 +13,7 @@ import days.day9.Day9
 import java.io.File
 
 fun main() {
-    (1..14)
+    (1..15)
         .map { getDay(it) }
         .map { println(it.prettyPrint()) }
 }
@@ -43,6 +44,7 @@ fun getDay(date: Int): Day {
         12 -> Day12(input)
         13 -> Day13(input)
         14 -> Day14(input)
+        15 -> Day15(input)
         else -> throw NotImplementedError()
     }
 }
